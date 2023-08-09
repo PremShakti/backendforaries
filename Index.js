@@ -6,14 +6,14 @@ const cors=require('cors')
 const cookieParser = require('cookie-parser');
 
 let app=express()
-let PORT=process.env.PORT||4040
+let PORT=process.env.PORT
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser());
 app.use("/admin",mainrouter)
 
 
-app.listen(PORT, async()=>{
+app.listen(PORT||4000, async()=>{
     try {
         await connect
         console.log(`your port is running in ${PORT}`)
