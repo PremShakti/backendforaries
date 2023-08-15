@@ -10,7 +10,7 @@ let PORT=process.env.PORT
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser());
-app.use("/admin",mainrouter)
+app.use("/",mainrouter)
 
 
 app.listen(PORT||8080, async()=>{
