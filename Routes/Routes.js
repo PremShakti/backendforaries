@@ -13,21 +13,19 @@ const client = new MongoClient(mogoURL, { useNewUrlParser: true, useUnifiedTopol
 const mainrouter = express.Router();
 
 mainrouter.post("/addgallery",auth, async (req, res) => {
-  await connectToDatabase();
+  // await connectToDatabase();
   try {
     let newpost = new PostModel(req.body);
     await newpost.save();
     res.status(200).json({ message: "post succesfully posted" });
   } catch (error) {
     res.status(400).json({ message: error.message });
-  }finally {
-    await client.close();
   }
 });
 // .sort({no_of_comments:1})
 
 mainrouter.get("/getgallery", async (req, res) => {
-  await connectToDatabase();
+  // await connectToDatabase();
   const page = parseInt(req.query.page) || 1;
   
   const limit = req.query.limit;
@@ -41,8 +39,6 @@ mainrouter.get("/getgallery", async (req, res) => {
     res.status(200).json(getData);
   } catch (error) {
     res.status(400).json({ message: error.message });
-  }finally {
-    await client.close();
   }
 });
 
@@ -212,14 +208,14 @@ mainrouter.get("/getgallery", async (req, res) => {
 // });
 
 
-async function connectToDatabase() {
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-}
+// async function connectToDatabase() {
+//   try {
+//     await client.connect();
+//     console.log('Connected to MongoDB');
+//   } catch (error) {
+//     console.error('Error connecting to MongoDB:', error);
+//   }
+// }
 
 
 
