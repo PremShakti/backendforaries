@@ -7,7 +7,7 @@ const { auth } = require("../middleware/Auth");
 require("dotenv").config();
 const mainrouter = express.Router();
 
-mainrouter.post("/addgallery", auth, async (req, res) => {
+mainrouter.post("/addgallery",auth, async (req, res) => {
   try {
     let newpost = new PostModel(req.body);
     await newpost.save();
