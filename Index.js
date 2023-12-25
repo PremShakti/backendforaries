@@ -15,7 +15,7 @@ app.use("/",mainrouter)
 
 app.listen(PORT, async()=>{
     try {
-        await connect
+       
         console.log(`your port is running in ${PORT}`)
     } catch (error) {
         console.log(error)
