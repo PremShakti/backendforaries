@@ -2,23 +2,32 @@ const express = require("express");
 const { PostModel, UserModel, PostReview, ServicesModel } = require("../module");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { MongoClient, ObjectId } = require('mongodb');
 const { auth } = require("../middleware/Auth");
-
 require("dotenv").config();
+
+const mogoURL=process.env.mogoURL
+// const uri = 'your-mongodb-uri';
+const client = new MongoClient(mogoURL, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const mainrouter = express.Router();
 
 mainrouter.post("/addgallery",auth, async (req, res) => {
+  await connectToDatabase();
   try {
     let newpost = new PostModel(req.body);
     await newpost.save();
     res.status(200).json({ message: "post succesfully posted" });
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }finally {
+    await client.close();
   }
 });
 // .sort({no_of_comments:1})
 
 mainrouter.get("/getgallery", async (req, res) => {
+  await connectToDatabase();
   const page = parseInt(req.query.page) || 1;
   
   const limit = req.query.limit;
@@ -32,6 +41,8 @@ mainrouter.get("/getgallery", async (req, res) => {
     res.status(200).json(getData);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }finally {
+    await client.close();
   }
 });
 
@@ -199,6 +210,18 @@ mainrouter.get("/getreview", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+
+async function connectToDatabase() {
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
+}
+
+
 
 
 module.exports = {
