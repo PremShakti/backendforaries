@@ -5,6 +5,7 @@ const { connect } = require("./db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const { furnitureRoute } = require("./Routes/Routesfurniture");
 let app = express();
 let PORT = process.env.PORT || 3000;
 app.use(express.json());
@@ -22,6 +23,7 @@ const connectDB = async () => {
 };
 
 app.use("/", mainrouter);
+app.use("/furniture", furnitureRoute);
 
 app.all("*", (req, res) => {
   res.json({ "every thing": "is awesome" });

@@ -25,11 +25,21 @@ const services=mongoose.Schema({
 
 })
 
+const PostItem=mongoose.Schema({
+    name:String,
+    url:String,
+    rating:Number,
+    price:Number,
+    categary:String,
+
+})
+
 
 
 
 
 const PostModel=mongoose.model("post",PostSchema)
+const ProductsModel=mongoose.model("products",PostItem)
 const PostReview=mongoose.model("review",userReviewSchema)
 const UserModel=mongoose.model("user",userSchema)
 const ServicesModel=mongoose.model("services",services)
@@ -40,7 +50,8 @@ module.exports={
     PostModel,
     UserModel,
     ServicesModel,
-    PostReview
+    PostReview,
+    ProductsModel
 }
 
 
