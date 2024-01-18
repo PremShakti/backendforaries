@@ -1,8 +1,8 @@
 const express = require("express");
 const { ProductsModel } = require("../module");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { MongoClient, ObjectId } = require("mongodb");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+// const { MongoClient, ObjectId } = require("mongodb");
 
 require("dotenv").config();
 

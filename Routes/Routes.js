@@ -2,7 +2,7 @@ const express = require("express");
 const { PostModel, UserModel, PostReview, ServicesModel } = require("../module");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { MongoClient, ObjectId } = require('mongodb');
+// const { MongoClient, ObjectId } = require('mongodb');
 const { auth } = require("../middleware/Auth");
 require("dotenv").config();
 
