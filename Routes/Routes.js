@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const mogoURL=process.env.mogoURL
 // const uri = 'your-mongodb-uri';
-const client = new MongoClient(mogoURL, { useNewUrlParser: true, useUnifiedTopology: true });
+// const client = new MongoClient(mogoURL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const mainrouter = express.Router();
 

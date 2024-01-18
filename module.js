@@ -34,6 +34,11 @@ const PostItem=mongoose.Schema({
 
 })
 
+const TodoSchemaforMongodb=mongoose.Schema({
+    todo:String,
+    date:String
+})
+
 
 
 
@@ -43,7 +48,7 @@ const ProductsModel=mongoose.model("products",PostItem)
 const PostReview=mongoose.model("review",userReviewSchema)
 const UserModel=mongoose.model("user",userSchema)
 const ServicesModel=mongoose.model("services",services)
-
+const TodoModelforMongodb=mongoose.model("todosListMdb",TodoSchemaforMongodb)
 
 module.exports={
    
@@ -51,7 +56,8 @@ module.exports={
     UserModel,
     ServicesModel,
     PostReview,
-    ProductsModel
+    ProductsModel,
+    TodoModelforMongodb
 }
 
 
